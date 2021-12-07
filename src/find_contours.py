@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 # Match contours to license plate or character template
-def find_contours(dimensions, img) :
+def find_contours(dimensions, img,imgName) :
 
     # Find all contours in the image
     cntrs, _ = cv2.findContours(img.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -16,7 +16,7 @@ def find_contours(dimensions, img) :
     # Check largest 5 or  15 contours for license plate or character respectively
     cntrs = sorted(cntrs, key=cv2.contourArea, reverse=True)[:15]
     
-    ii = cv2.imread('contour.jpg')
+    ii = cv2.imread('./src/img/contours/contour.jpg')
     
     x_cntr_list = []
     target_contours = []
@@ -35,7 +35,7 @@ def find_contours(dimensions, img) :
             char = cv2.resize(char, (20, 40))
             
             cv2.rectangle(ii, (intX,intY), (intWidth+intX, intY+intHeight), (50,21,200), 2)
-
+            cv2.imwrite('./src/img/contours/Contour' + imgName,ii)
             # Make result formatted for classification: invert colors
             char = cv2.subtract(255, char)
 

@@ -3,7 +3,7 @@ import cv2
 from src.find_contours import find_contours
 
 
-def segment_characters(image) :
+def segment_characters(image,imgName) :
 
     # Preprocess cropped license plate image
     img_lp = cv2.resize(image, (333, 75))
@@ -26,9 +26,12 @@ def segment_characters(image) :
                        LP_WIDTH/2,
                        LP_HEIGHT/10,
                        2*LP_HEIGHT/3]
-    cv2.imwrite('./img/contours/contour.jpg',img_binary_lp)
+    cv2.imwrite('./src/img/contours/contour.jpg',img_binary_lp)
+    print('./img/contours/' + imgName)
+    cv2.imwrite('./src/img/contours/' + imgName,img_binary_lp)
+    
 
     # Get contours within cropped license plate
-    char_list = find_contours(dimensions, img_binary_lp)
+    char_list = find_contours(dimensions, img_binary_lp,imgName)
 
     return char_list

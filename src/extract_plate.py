@@ -1,7 +1,7 @@
 import cv2
 import matplotlib.pyplot as plt
 
-def extract_plate(img): # the function detects and perfors blurring on the number plate.
+def extract_plate(img,imgName): # the function detects and perfors blurring on the number plate.
     plate_img = img.copy()
 
     #Loads the data required for detecting the license plates from cascade classifier.
@@ -16,5 +16,5 @@ def extract_plate(img): # the function detects and perfors blurring on the numbe
         plate = plate_img[y+a:y+h-a, x+b:x+w-b, :]
         # finally representing the detected contours by drawing rectangles around the edges.
         cv2.rectangle(plate_img, (x,y), (x+w, y+h), (51,51,255), 3)
-                
+    cv2.imwrite('./src/img/zoomedPlate/' + imgName,plate)            
     return plate_img, plate # returning the processed image.
