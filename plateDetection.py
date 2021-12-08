@@ -11,7 +11,7 @@ import time
 green = cv2.imread("./src/img/colors/green.png")
 
 
-whitelist = ["1AAC588"]
+whitelist = ["1AAV005","1AAC588"]
 
 while True:
 
@@ -28,7 +28,7 @@ while True:
 
 
     result = show_results(char)
-    time.sleep(1)
+    time.sleep(1.5)
     if(result):
         print(result)
         if result in whitelist:
